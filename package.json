@@ -1,0 +1,8 @@
+{
+    "name": "edu.umn.cs.ivlab.objimport",
+    "displayName": "OBJ Import",
+    "version": "0.0.1",
+    "unity": "2020.1",
+    "description": "Runtime import of OBJ files",
+    "dependencies": {}
+}
