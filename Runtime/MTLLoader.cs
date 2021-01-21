@@ -12,11 +12,11 @@
  * all copies or substantial portions of the Software.
 */
 
-using IVLab.OBJImport;
 using System.Collections.Generic;
 using System.IO;
 using UnityEngine;
 
+namespace IVLab.OBJImport {
 public class MTLLoader {
     public List<string> SearchPaths = new List<string>() { "%FileName%_Textures", string.Empty};
 
@@ -304,4 +304,5 @@ public class MTLLoader {
         }
         
     }
+}
 }

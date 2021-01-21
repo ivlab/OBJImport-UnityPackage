@@ -12,7 +12,6 @@
  * all copies or substantial portions of the Software.
 */
 
-using IVLab.OBJImport;
 using System.Collections.Generic;
 using UnityEngine;
 

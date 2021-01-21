@@ -16,7 +16,6 @@ using System.Collections.Generic;
 using System.IO;
 using UnityEngine;
 using System;
-using IVLab.OBJImport;
 #if UNITY_EDITOR
 using UnityEditor;
 #endif
