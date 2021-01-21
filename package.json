@@ -1,8 +1,8 @@
 {
     "name": "edu.umn.cs.ivlab.objimport",
     "displayName": "OBJ Import",
-    "version": "0.0.1",
+    "version": "2.0.2",
     "unity": "2020.1",
-    "description": "Runtime import of OBJ files",
+    "description": "Runtime import of OBJ files (from Dummiesman Unity Asset)",
     "dependencies": {}
 }
