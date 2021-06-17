@@ -95,8 +95,9 @@ namespace IVLab.OBJImport
         /// Load an OBJ file from a stream. No materials will be loaded, and will instead be supplemented by a blank white material.
         /// </summary>
         /// <param name="input">Input OBJ stream</param>
+        /// <param name="hideImmediately">Immediately disable the GameObject before any meshes are populated in it</param>
         /// <returns>Returns a GameObject represeting the OBJ file, with each imported object as a child.</returns>
-        public GameObject Load(Stream input)
+        public GameObject Load(Stream input, bool hideImmediately)
         {
             var reader = new StreamReader(input);
             //var reader = new StringReader(inputReader.ReadToEnd());
@@ -263,6 +264,7 @@ namespace IVLab.OBJImport
             //finally, put it all together
             GameObject obj = new GameObject(_objInfo != null ? Path.GetFileNameWithoutExtension(_objInfo.Name) : "WavefrontObject");
             obj.transform.localScale = new Vector3(-1f, 1f, 1f);
+            obj.SetActive(!hideImmediately);
 
             foreach (var builder in builderDict)
             {
@@ -282,13 +284,14 @@ namespace IVLab.OBJImport
         /// </summary>
         /// <param name="input">Input OBJ stream</param>
         /// /// <param name="mtlInput">Input MTL stream</param>
+        /// <param name="hideImmediately">Immediately disable the GameObject before any meshes are populated in it</param>
         /// <returns>Returns a GameObject represeting the OBJ file, with each imported object as a child.</returns>
-        public GameObject Load(Stream input, Stream mtlInput)
+        public GameObject Load(Stream input, Stream mtlInput, bool hideImmediately)
         {
             var mtlLoader = new MTLLoader();
             Materials = mtlLoader.Load(mtlInput);
 
-            return Load(input);
+            return Load(input, hideImmediately);
         }
 
         /// <summary>
@@ -296,8 +299,9 @@ namespace IVLab.OBJImport
         /// </summary>
         /// <param name="path">Input OBJ path</param>
         /// /// <param name="mtlPath">Input MTL path</param>
+        /// <param name="hideImmediately">Immediately disable the GameObject before any meshes are populated in it</param>
         /// <returns>Returns a GameObject represeting the OBJ file, with each imported object as a child.</returns>
-        public GameObject Load(string path, string mtlPath)
+        public GameObject Load(string path, string mtlPath, bool hideImmediately)
         {
             _objInfo = new FileInfo(path);
             if (!string.IsNullOrEmpty(mtlPath) && File.Exists(mtlPath))
@@ -307,14 +311,14 @@ namespace IVLab.OBJImport
 
                 using (var fs = new FileStream(path, FileMode.Open))
                 {
-                    return Load(fs);
+                    return Load(fs, hideImmediately);
                 }
             }
             else
             {
                 using (var fs = new FileStream(path, FileMode.Open))
                 {
-                    return Load(fs);
+                    return Load(fs, hideImmediately);
                 }
             }
         }
@@ -323,10 +327,11 @@ namespace IVLab.OBJImport
         /// Load an OBJ file from a file path. This function will also attempt to load the MTL defined in the OBJ file.
         /// </summary>
         /// <param name="path">Input OBJ path</param>
+        /// <param name="hideImmediately">Immediately disable the GameObject before any meshes are populated in it</param>
         /// <returns>Returns a GameObject represeting the OBJ file, with each imported object as a child.</returns>
-        public GameObject Load(string path)
+        public GameObject Load(string path, bool hideImmediately=false)
         {
-            return Load(path, null);
+            return Load(path, null, hideImmediately);
         }
     }
 }
