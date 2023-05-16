@@ -276,6 +276,7 @@ namespace IVLab.OBJImport
                 builtObj.transform.SetParent(obj.transform, false);
             }
 
+            reader.Close();
             return obj;
         }
 
