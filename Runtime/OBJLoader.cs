@@ -334,5 +334,18 @@ namespace IVLab.OBJImport
         {
             return Load(path, null, hideImmediately);
         }
+
+        /// <summary>
+        /// Load an OBJ file from a file path. This function will also attempt to load the MTL defined in the OBJ file.
+        /// </summary>
+        /// <param name="materials">Dictionary of `material name`=>`Material`. Use names from .obj file to represent materials.</param>
+        /// <param name="path">Input OBJ path</param>
+        /// <param name="hideImmediately">Immediately disable the GameObject before any meshes are populated in it</param>
+        /// <returns>Returns a GameObject represeting the OBJ file, with each imported object as a child.</returns>
+        public GameObject LoadWithMaterials(string path, Dictionary<string, Material> materials, bool hideImmediately=false)
+        {
+            Materials = materials;
+            return Load(path, null, hideImmediately);
+        }
     }
 }

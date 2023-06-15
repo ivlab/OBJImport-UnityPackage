@@ -14,6 +14,7 @@
 
 using System.Collections.Generic;
 using UnityEngine;
+using System.Linq;
 
 namespace IVLab.OBJImport {
 public class OBJObjectBuilder {
